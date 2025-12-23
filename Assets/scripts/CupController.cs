@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,15 +18,7 @@ public class CupController : MonoBehaviour
     }
     void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetMouseButton(0))
-        {
-            if (Input.mousePosition.x > Screen.width / 2)
-                targetX += moveSpeed * Time.deltaTime;
-            else
-                targetX -= moveSpeed * Time.deltaTime;
-        }
-#else
+
     if (Input.touchCount > 0)
     {
         Touch t = Input.GetTouch(0);
@@ -36,7 +27,7 @@ public class CupController : MonoBehaviour
         else
             targetX -= moveSpeed * Time.deltaTime;
     }
-#endif
+
 
         targetX = Mathf.Clamp(targetX, -xLimit, xLimit);
 
